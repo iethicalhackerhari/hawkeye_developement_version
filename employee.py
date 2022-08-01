@@ -10,6 +10,7 @@ class Employee :
         self.root=root
         self.root.geometry("1530x790+0+0")
         self. root.title("face Recogniton System ")
+        self.root.attributes("-fullscreen", True)
         
         
         #variables
@@ -19,6 +20,10 @@ class Employee :
         self.email = StringVar()
         self.dept = StringVar()
         
+        label1=Label(self.root, text='the HAWKEYE', fg='white', bg='#000') 
+        label1.configure(font=("Game Of Squids", 24, "bold"), pady=10)  
+        
+        label1.place(x=0,y=0, width=1600)
         
         # Background Image
         bg_img=Image.open(r"C:\Users\VIVOBOOK 14\Downloads\HawkEye-logo.png")
@@ -30,7 +35,7 @@ class Employee :
         bg_lbl.place(x=500, y=210, width=530, height=410)
         
         main_frame = Frame (self.root, bd=2)
-        main_frame.place (x=20, y=50, width=1480, height =600)
+        main_frame.place (x=20, y=100, width=1480, height =600)
         
         # Left label Frame
         Left_frame= LabelFrame (main_frame, bd=2, relief=RIDGE, text="Employee Details")
@@ -131,6 +136,10 @@ class Employee :
         
         take_photo_btn=Button (search_box_frame, text= "Show All", width=15, font=("times new roman", 13, "bold"), bg="cyan", fg="black")
         take_photo_btn.grid (row=1, column=2,pady=5, padx=5)
+        
+        # Back Button
+        exit_btn=Button(self.root,command=self.go_back, text="Back", cursor="hand2", font=("times new roman", 15, "bold"))
+        exit_btn.place (x=1300, y=750, width=180, height=40)
  
  
         data_display_frame = Frame(Right_frame, bd=2, bg="white", relief=RIDGE)
@@ -155,6 +164,8 @@ class Employee :
         self.employee_data["show"]="headings"
         self.fetch_data()
         
+    def go_back(self):
+        self.root.destroy()
     
     def add_data(self):
         if self.dept.get()=="Select Department" or self.name.get()=='' or self.email.get()=='':
